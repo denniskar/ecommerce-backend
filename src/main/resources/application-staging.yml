@@ -1,0 +1,51 @@
+# ===============================
+# = Server Cofiguration
+# ===============================
+server:
+  port: 9098
+  servlet:
+    context-path: /
+
+  # ========================
+  # HTTPS
+  # ========================
+  ssl:
+    key-store: classpath:keystore/batchfetch-c2b.p12
+    key-store-password: batchfetch-c2b
+    keyStoreType: PKCS12
+    keyAlias: batchfetch-c2b
+
+# ===============================
+# = DATA SOURCE
+# ===============================
+spring:
+  datasource:
+    username: root
+    password: W_Lan!!rP@42s
+    url: jdbc:mysql://localhost:3306/loanManager?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&useLegacyDatetimeCode=false
+
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    initialization-mode: always
+
+  
+
+  #  ===============================
+  # = JPA / HIBERNATE
+  # ===============================
+  jpa:
+    show_sql: true
+    format_sql: true
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        enable_lazy_load_no_trans: true
+
+
+
+

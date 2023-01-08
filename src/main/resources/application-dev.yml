@@ -1,0 +1,56 @@
+# ===============================
+# = Server Cofiguration
+# ===============================
+server:
+  port: 8097
+  servlet:
+    context-path: /
+
+
+
+# ===============================
+# = DATA SOURCE
+# ===============================
+spring:
+  datasource:
+    username: root
+    password:
+    url: jdbc:mysql://localhost:3306/agro-products?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&useLegacyDatetimeCode=false
+
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    testWhileIdle: true
+    validationQuery: SELECT 1
+
+
+
+  #  ===============================
+  # = JPA / HIBERNATE
+  # ===============================
+  jpa:
+    show_sql: true
+    format_sql: true
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        enable_lazy_load_no_trans: true
+  sql:
+    init:
+      mode: always
+
+
+#
+#  # ActiveMQ Configuration
+#  activemq:
+#    broker-url: tcp://192.168.10.3:61616
+#    in-memory: false
+#    user: admin
+#    password: admin
+
+
+
+
