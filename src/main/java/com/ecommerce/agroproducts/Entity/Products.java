@@ -31,8 +31,7 @@ public class Products {
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, optional = false)
     private  ProductCategories productCategories;
 
-    @ManyToMany(mappedBy = "products", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-    @JsonIgnore
+    @OneToMany(mappedBy = "products", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     private Set<AssignedProducts> assignedProducts;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "products", cascade = CascadeType.ALL)
