@@ -23,7 +23,7 @@ public class Users {
 //    @OneToMany
 //    private List <Roles> roles;
 
-    @OneToOne(mappedBy = "users")
+    @OneToMany(mappedBy = "users")
     private AssignedProducts loans;
 
 }

@@ -13,13 +13,11 @@ public class AssignedProducts {
     private Long id;
 
     private  Double quantity;
-    @ManyToOne(cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
-    @JoinTable(name="productsAssigned",
-    joinColumns = @JoinColumn(name="assignedProductId",referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name="productId",referencedColumnName = "id"))
-    private Set<Products> products;
+    @JoinColumn(name = "productId", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, optional = false)
+    private  Products products;
     @JoinColumn(name = "userId", referencedColumnName = "id")
-    @OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, optional = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JsonIgnore
     private  Users users;
