@@ -1,5 +1,6 @@
 package com.ecommerce.agroproducts.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import org.apache.logging.log4j.message.StringFormattedMessage;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -23,7 +25,7 @@ public class Users {
 //    @OneToMany
 //    private List <Roles> roles;
 
-    @OneToMany(mappedBy = "users")
-    private AssignedProducts loans;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users", cascade = CascadeType.ALL)
+    private Set<AssignedProducts> loans;
 
 }

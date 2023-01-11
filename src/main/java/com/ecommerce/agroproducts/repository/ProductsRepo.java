@@ -1,7 +1,11 @@
 package com.ecommerce.agroproducts.repository;
 
 import com.ecommerce.agroproducts.Entity.Product;
+import com.ecommerce.agroproducts.Entity.Products;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProductsRepo  extends JpaRepository<Product,Long> {
+import java.util.Optional;
+
+public interface ProductsRepo  extends JpaRepository<Products,Long> {
+    Optional<Products> findByProductCode(String productCode);
 }
