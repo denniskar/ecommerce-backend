@@ -24,7 +24,6 @@ public class Users {
     private String firstName,LastName;
 //    @OneToMany
 //    private List <Roles> roles;
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "users", cascade = CascadeType.ALL)
     private Set<AssignedProducts> loans;
 
