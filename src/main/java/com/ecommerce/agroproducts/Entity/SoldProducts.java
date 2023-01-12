@@ -30,7 +30,7 @@ public class SoldProducts {
     @ManyToOne(cascade =CascadeType.DETACH,fetch = FetchType.LAZY,optional = false)
     private  Users users;
 
-    @JoinColumn(name="productId",referencedColumnName = "id")
+    @JoinColumn(name="AssignedProductId",referencedColumnName = "id")
     @ManyToOne(cascade =CascadeType.DETACH,fetch = FetchType.LAZY,optional = false)
-    private  Products products;
+    private  AssignedProducts products;
 }
