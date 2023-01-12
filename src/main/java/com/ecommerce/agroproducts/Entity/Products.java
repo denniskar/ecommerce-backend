@@ -26,7 +26,7 @@ public class Products implements Serializable {
     private  String ProductSize;
     private String productCode;
     private Double unitsAvailable;
-    private  Double units;
+    private  Double actualUnits;
     @Column(name = "buyingPrice", nullable = false, length = 5)
     private  Double productPrice;
     @Column(name = "sellingPrice", nullable = false, length = 5)

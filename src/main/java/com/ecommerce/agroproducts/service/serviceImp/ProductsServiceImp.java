@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 @Service
 public class ProductsServiceImp {
@@ -19,23 +22,29 @@ public class ProductsServiceImp {
     }
 
     ResponseEntity<ApiResponse> addProducts(ProductsRequest products){
-        ApiResponse apiResponse =new ApiResponse();
-
         Optional<Products>product=productsRepo.findByProductCode(products.getProductCode());
    if(product.isPresent()){
-       apiResponse.response(1,"This product already exists");
-       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiResponse);
+       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.response(1,"This product already exists"));
    }
    try {
        productsRepo.save(Products.valueOf(products));
-       apiResponse.response(0,"product added successfully");
    }catch (Exception e){
        e.printStackTrace();
-       apiResponse.response(1,"error Occurred");
-       return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiResponse);
+       return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.response(1,"  Error Occurred"));
    }
-
-
-        return  ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
+        return  ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.response(0,"product Added successfully"));
     };
+
+ResponseEntity<Map<String,Object>>getProducts(){
+    Map<String,Object>response=new HashMap<>();
+  List<Products>products= productsRepo.findAll();
+  response.put("status","0");
+  response.put("message","success");
+  response.put("data",products);
+
+    return ResponseEntity.ok(response);
 }
+}
+
+
+
