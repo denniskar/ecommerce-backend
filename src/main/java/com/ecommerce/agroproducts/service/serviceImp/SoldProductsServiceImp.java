@@ -31,12 +31,9 @@ public class SoldProductsServiceImp {
     if(!product.isPresent()){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.response(1,"product does not exist"));
     }
-   Optional<Users>users=usersRepository.findById(products.getUserId());{
+   Optional<Users>users=usersRepository.findById(products.getUserId());
+    if(!users.isPresent()){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.response(1,"user does not exist"));
     }
-
-
-
-
-    }
-}
+    return  null;
+}}
