@@ -9,7 +9,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SellProductsRequest implements Serializable {
-    private  String sellingPrice;
+    private  Double sellingPrice;
     private  Double quantity;
     private Double profit;
     private Long userId;

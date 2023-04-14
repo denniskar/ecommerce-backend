@@ -1,5 +1,6 @@
 package com.ecommerce.agroproducts.Entity;
 
+import com.ecommerce.agroproducts.utils.requests.SellProductsRequest;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,4 +34,15 @@ public class SoldProducts {
     @JoinColumn(name="AssignedProductId",referencedColumnName = "id")
     @ManyToOne(cascade =CascadeType.DETACH,fetch = FetchType.LAZY,optional = false)
     private  AssignedProducts products;
+
+    public static SoldProducts of(SellProductsRequest products, AssignedProducts assignedProducts, Users users) {
+        SoldProducts soldProducts =new SoldProducts();
+        soldProducts.setProfit(products.getProfit());
+        soldProducts.setProducts(assignedProducts);
+        soldProducts.setTimeSold(LocalDateTime.now());
+        soldProducts.setSellingPrice(String.valueOf(products.getSellingPrice()));
+        soldProducts.setQuantity(products.getQuantity());
+        soldProducts.setUsers(users);
+        return  soldProducts;
+    }
 }
