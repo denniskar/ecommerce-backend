@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users/")
 public class Users {
 
     private final UsersService usersService;
@@ -20,7 +20,7 @@ public class Users {
 
     @PostMapping(value = "add-user")
     public ResponseEntity<ApiResponse> addUser(@RequestBody UsersRequest usersRequest) {
-        return usersService.addUsers(usersRequest);
+        return usersService.createUsers(usersRequest);
     }
 
     @GetMapping(value = "get-users")
