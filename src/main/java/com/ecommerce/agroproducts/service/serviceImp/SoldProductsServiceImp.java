@@ -77,6 +77,7 @@ public class SoldProductsServiceImp implements SoldProductService {
             if(endDate!=null && startDate==null ){
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.response(1,"please supply the start date"));
             }
+            return  null;
 
     }
 }
