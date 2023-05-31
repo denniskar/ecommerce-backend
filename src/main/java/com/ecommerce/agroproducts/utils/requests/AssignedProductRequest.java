@@ -12,5 +12,4 @@ public class AssignedProductRequest implements Serializable {
     private  Double quantity;
     private Long productId;
     private Long userId;
-
 }

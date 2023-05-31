@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/v1/getLoans/**").hasAnyAuthority("addUser", "ViewTransaction", "viewClientTransactions")
                 .antMatchers(HttpMethod.GET, "/qsend-api/v1/transactions/findByTransactionReference/**").hasAnyAuthority("ViewAllTransactions", "ViewTransaction", "viewClientTransactions")
                 .antMatchers(HttpMethod.GET, "/qsend-api/v1/transactions/findByClient/**").hasAnyAuthority("ViewAllTransactions", "viewClientTransactions")
-                .antMatchers("/api/v1/auth/token", "/api/v1/users/**","/api/v1/add-Reminder","/api/v1/daily-payment", "/qsend-api/v1/country/**").permitAll().anyRequest().authenticated()
+                .antMatchers("/api/v1/auth/token", "/api/**","/api/v1/add-Reminder","/api/v1/daily-payment", "/qsend-api/v1/country/**").permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).
                 and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
                 and().addFilterBefore(customJwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -6,6 +6,7 @@ import com.ecommerce.agroproducts.Entity.Users;
 import com.ecommerce.agroproducts.repository.ProductAssignRepo;
 import com.ecommerce.agroproducts.repository.ProductsRepo;
 import com.ecommerce.agroproducts.repository.UsersRepository;
+import com.ecommerce.agroproducts.service.AssignedProductService;
 import com.ecommerce.agroproducts.utils.requests.AssignedProductRequest;
 import com.ecommerce.agroproducts.utils.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
-public class ProductAssignmentServiceImpl {
+public class ProductAssignmentServiceImpl implements AssignedProductService {
     private  final ProductAssignRepo productAssignRepo;
     private final ProductsRepo productsRepo;
 
@@ -29,8 +30,10 @@ public class ProductAssignmentServiceImpl {
     this.productsRepo = productsRepo;
     this.usersRepository = usersRepository;
 }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
-    ResponseEntity<ApiResponse> assignProducts(AssignedProductRequest request){
+    public ResponseEntity<ApiResponse> assignProducts(AssignedProductRequest request){
 
         Optional<Products>products=productsRepo.findById(request.getProductId());
         if(!products.isPresent()){
@@ -53,5 +56,10 @@ public class ProductAssignmentServiceImpl {
               e.printStackTrace();
               return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.response(1,"Error Occurred "));
           }
+    }
+
+    @Override
+    public ResponseEntity<ApiResponse> getAssignedProducts(Long userId, Long productId) {
+        return null;
     }
 }
